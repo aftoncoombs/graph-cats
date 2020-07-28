@@ -57,7 +57,13 @@ how_many_graph <-
                                    x = cats_factor, 
                                    y = votes), 
             position = position_dodge(width = 0.8), vjust = -0.6) +
-  ggplot2::ggtitle(label = "How Many Cats Do You Have In Your Home?") +
+  ggplot2::labs(title = "How Many Cats Do You Have In Your Home?",
+                caption = paste0("Poll response rate: ",
+                                 response_rate$resp[1],
+                                 " / ",
+                                 response_rate$total[1],
+                                 " cat lovers = ",
+                                 response_rate$resp_perc)) + 
   ggthemes::theme_hc() + 
   ggplot2::theme(axis.title.x = ggplot2::element_blank())
   
