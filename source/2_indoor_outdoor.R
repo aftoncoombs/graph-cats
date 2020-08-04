@@ -1,5 +1,4 @@
 ## Are your cats indoor, outdoor, or indoor/outdoor?
-## Image source: https://pixabay.com/images/id-1813100/ @naobim
 ## Image by Gary Ross on Pixabay https://pixabay.com/images/id-659426/
 
 library(dplyr)
@@ -17,7 +16,7 @@ indoor_outdoor <-
   dplyr::mutate(prop = votes / sum(votes, na.rm = TRUE)) %>%
   dplyr::mutate(perc = paste0(round(x = prop * 100, digits = 0), "%")) %>%
   dplyr::mutate(label = paste0(response, ":\n", perc),
-                x = c(0.5, 6, 6.4),
+                x = c(0.5, 6.1, 6.5),
                 y = c(1, 2.5, 2),
                 colour = c("white", "black", "black"))
 
@@ -39,7 +38,13 @@ g <-
                                         colour = label)) +
   ggplot2::geom_text(size = 3) +
   ggplot2::coord_cartesian(xlim = c(-1, 7), ylim = c(0.5, 3)) + 
-  ggplot2::ggtitle("Are Your Cats Indoors Or Outdoors?") +
+  ggplot2::labs(title = "Are Your Cats Indoors Or Outdoors?",
+                caption = paste0("Response rate: ",
+                                 response_rate$resp[1],
+                                 " / ",
+                                 response_rate$total[1],
+                                 " = ",
+                                 response_rate$resp_perc)) +
   ggplot2::scale_colour_manual(values = test) +
   ggplot2::theme_void() +
   ggplot2::theme(title = ggplot2::element_text(colour = "white", size = 8),
