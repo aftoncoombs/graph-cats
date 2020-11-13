@@ -19,7 +19,7 @@ library(ggimage)
 
 ## Get data -----
 food_data_raw <- read.csv("source/3_food_data/poll3-data.csv")
-colnames(food_data_raw) <- c("food_type", "num_votes", "voter", "voter_id")
+colnames(food_data_raw) <- c("food_type", "num_votes", "voter")
 food_data_raw <- 
   food_data_raw %>% 
   dplyr::select(food_type, num_votes, voter)
@@ -137,3 +137,4 @@ ggsave(filename = "graphs/3_what_type_of_food.png",
        plot = bar_graph_img,
        width = 6,
        height = 4)
+
